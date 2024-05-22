@@ -22,9 +22,53 @@ int main(){
 
         // Output the buffer as binary values
         for (int i = 0; i < fileSize; i++) {
-            cout << static_cast<int>(static_cast<unsigned char>(buffer[i])) << " ";
+            //cout << static_cast<int>(buffer[i]) << " ";
         }
 
+        // Open the output file
+        ofstream outputFile("imo0.foo2_teste");
+
+        // Check if the output file is open
+        if (outputFile.is_open()) {
+            // Write the translated characters to the output file
+            for (int i = 0; i < fileSize; i++) {
+                int value = static_cast<int>(buffer[i]);
+                char translatedChar;
+
+                // Determine the translated character based on the value
+                if (value >= 200) {
+                    translatedChar = '$';
+                } else if (value >= 180) {
+                    translatedChar = '@';
+                } else if (value >= 160) {
+                    translatedChar = 'B';
+                } else if (value >= 140) {
+                    translatedChar = '%';
+                } else if (value >= 120) {
+                    translatedChar = '8';
+                } else if (value >= 100) {
+                    translatedChar = '&';
+                } else if (value >= 80) {
+                    translatedChar = 'W';
+                } else if (value >= 60) {
+                    translatedChar = 'M';
+                } else if (value >= 40) {
+                    translatedChar = '#';
+                } else if (value >= 20) {
+                    translatedChar = '*';
+                } else {
+                    translatedChar = ' ';
+                }
+
+                // Write the translated character to the output file
+                outputFile << translatedChar;
+            }
+
+            // Close the output file
+            outputFile.close();
+        } else {
+            cout << "Failed to create the output file." << endl;
+        }
         // Clean up the buffer
         delete[] buffer;
 
