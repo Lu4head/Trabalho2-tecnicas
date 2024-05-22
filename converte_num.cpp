@@ -11,7 +11,7 @@ int main() {
     double variacao = (1 + max - min) / numCaracteres;
     
     for(int i = min ; i <= max ; ++i){
-        int indice = (i - min) / variacao;
+        int indice = (i - min) / (variacao + 1);
         if(indice >= numCaracteres) {
             indice = numCaracteres - 1;
         }
