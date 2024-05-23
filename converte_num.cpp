@@ -5,8 +5,8 @@ using namespace std;
 
 int main() {
     // Definindo o intervalo de números e o número de caracteres
-    int min = 50;
-    int max = 100;
+    int min = 0;
+    int max = 255;
     const int numCaracteres = 67;
     char caracteres[numCaracteres] = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/|()1{}[]?-_+~<>i!lI;:,\"^`";
     double variacao = static_cast<double>(max - min + 1) / (numCaracteres - 1);
