@@ -5,21 +5,21 @@
 using namespace std;
 
 int converte_registro(char registro){
-    int registro_int = (char) registro;
+    int registro_int = abs((unsigned char) registro);
 
-    // int min = 0;
-    // int max = 255;
-    // char caracteres[] = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/|()1{}[]?-_+~<>i!lI;:,\"^`";
-    // int numCaracteres = sizeof(caracteres);
-    // double variacao = static_cast<double>(max - min + 1) / (numCaracteres - 1);
+    int min = 3;
+    int max = 255;
+    char caracteres[] = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/|()1{}[]?-_+~<>i!lI;:,\"^`.";
+    int numCaracteres = sizeof(caracteres);
+    double variacao = static_cast<double>(max - min + 1) / (numCaracteres - 1);
 
-    // int indice = static_cast<int>((registro_int - min) / variacao);
+    int indice = static_cast<int>((registro_int - min) / variacao);
         
-    // char registro_convertido = caracteres[indice];
+    char registro_convertido = caracteres[indice];
 
-    //return registro_convertido;
+    return registro_convertido;
 
-    return registro_int;
+    //return registro_int;
 }
 
 int main(){
@@ -41,7 +41,7 @@ int main(){
     input_file.seekg(0, ios::end);
     int tamanho_arquivo = input_file.tellg();
     input_file.seekg(0, ios::beg);
-    int* dados_convertidos = new int[tamanho_arquivo];
+    char* dados_convertidos = new char[tamanho_arquivo];
     int tamanho_primeira_linha = 0;
     bool escrever_como_char = true; // Variável para controlar o modo de escrita
 
