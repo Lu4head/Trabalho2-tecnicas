@@ -37,9 +37,9 @@ int main(){
         return 1;
     }
 
-    unsigned char registro;
+    char registro;
     input_file.seekg(0, ios::end);
-    unsigned int tamanho_arquivo = input_file.tellg();
+    int tamanho_arquivo = input_file.tellg();
     input_file.seekg(0, ios::beg);
     int* dados_convertidos = new int[tamanho_arquivo];
     int tamanho_primeira_linha = 0;
