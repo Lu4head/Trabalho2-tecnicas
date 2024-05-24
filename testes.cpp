@@ -24,51 +24,32 @@ int converte_registro(char registro){
 
 int main(){
     setlocale(LC_ALL,"Portuguese");
-
+    char nome_arquivo_input[] = "img0.foo2" ;
     ifstream input_file("./Exemplos/img0.foo", ios::binary);
-    ofstream output_file("img0.foo2");
+    ofstream output_file(nome_arquivo_input);
 
     if(input_file.fail()){
-        cout << "Erro ao abrir o arquivo de entrada" << endl;
-        return 1;
-    }
-    if(output_file.fail()){
-        cout << "Erro ao abrir o arquivo de saída" << endl;
+        cout << "Erro ao abrir o arquivo " << nome_arquivo_input << endl;
         return 1;
     }
 
     char registro;
-    input_file.seekg(0, ios::end);
-    int tamanho_arquivo = input_file.tellg();
-    input_file.seekg(0, ios::beg);
-    char* dados_convertidos = new char[tamanho_arquivo];
-    int tamanho_primeira_linha = 0;
-    bool escrever_como_char = true; // Variável para controlar o modo de escrita
+    int altura , largura;
+    //char **dados_convertidos;
+    input_file >> largura >> altura;
+    output_file << largura << " " << altura << endl;
 
-    for(int indice = 0; indice < tamanho_arquivo; ++indice){
-        input_file.read(&registro, sizeof(registro));
-        
-        if (escrever_como_char) {
-            output_file << registro; // Escreve como char
-            tamanho_primeira_linha++;
-        } else {
+    for(int i = 0; i < altura ; ++i){
+        for(int j = 0; j < largura ; ++j){
+            input_file.read(&registro, 1);
             char registro_convertido = converte_registro(registro);
-            dados_convertidos[indice - tamanho_primeira_linha] = registro_convertido;
+            output_file << registro_convertido;
         }
-
-        if (registro == '\n') {
-            escrever_como_char = false; // Altera o modo de escrita para int
-        }
-
+        output_file << '\n';
     }
 
-    if (!escrever_como_char) {
-        for(int i = 0; i < tamanho_arquivo - tamanho_primeira_linha; ++i){
-            output_file << dados_convertidos[i] << " "; // Escreve como int
-        }
-    }
 
-    delete[] dados_convertidos;
+    //delete[] dados_convertidos;
     input_file.close();
     output_file.close();   
 
