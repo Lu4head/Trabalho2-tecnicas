@@ -1,4 +1,4 @@
-// tratamento que resulta igual o do professor (quase)
+// tratamento mais claro, luan preferiu
 #include <iostream>
 #include <locale.h>
 #include <fstream>
@@ -6,27 +6,22 @@
 using namespace std;
 
 char converte_registro(char registro) {
-
+    
     const char caracteres[] = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/|()1{}[]?-_+~<>i!lI;:,\"^`.";
 
-
-    const int num_intervalos = 4;
-    const int intervalo = 256 / num_intervalos;
-
+    int indice = static_cast<int>(registro);
     
-    int indice = registro / intervalo;
-
-    // Certificar-se de que o índice está dentro dos limites
+ 
     if (indice < 0) indice = 0;
-    else if (indice >= num_intervalos) indice = num_intervalos - 1;
+    else if (indice >= sizeof(caracteres) - 1) indice = sizeof(caracteres) - 2;
 
     return caracteres[indice];
 }
 
 int main(){
     setlocale(LC_ALL,"Portuguese");
-    const char nome_arquivo_input[] = "img2.foo5" ;
-    ifstream input_file("./Exemplos/img2.foo", ios::binary);
+    char nome_arquivo_input[] = "img0.foo5" ;
+    ifstream input_file("./Exemplos/img1.foo", ios::binary);
     ofstream output_file(nome_arquivo_input);
 
     if(input_file.fail()){
@@ -36,6 +31,7 @@ int main(){
 
     char registro;
     int altura , largura;
+    //char **dados_convertidos;
     input_file >> largura >> altura;
     output_file << largura << " " << altura << endl;
 
@@ -48,6 +44,8 @@ int main(){
         output_file << '\n';
     }
 
+
+    //delete[] dados_convertidos;
     input_file.close();
     output_file.close();   
 
