@@ -24,8 +24,8 @@ int converte_registro(char registro){
 
 int main(){
     setlocale(LC_ALL,"Portuguese");
-    char nome_arquivo_input[] = "img0.foo2" ;
-    ifstream input_file("./Exemplos/img0.foo", ios::binary);
+    char nome_arquivo_input[] = "img1.foo2" ;
+    ifstream input_file("./Exemplos/img1.foo", ios::binary);
     ofstream output_file(nome_arquivo_input);
 
     if(input_file.fail()){
