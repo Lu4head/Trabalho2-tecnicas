@@ -1,7 +1,7 @@
 // Integrantes do grupo:
 // Nome: Luan Emanuel R. Argentato     RA: 2184611
 // Nome: Gustavo T. Duzzi              RA:
-// Nome: Gabriel Golino                RA:
+// Nome: Guilherme Santos Gollino      RA: 2226090 
 
 #include <iostream>
 #include <locale.h>
