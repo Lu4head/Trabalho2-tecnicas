@@ -42,13 +42,18 @@ int main(int argc, char* argv[]) {
     int altura , largura;
     input_file >> largura >> altura;
     output_file << largura << " " << altura << endl;
-
+    cout << "colunas (largura): " << largura << "\nlinhas (altura): " << altura << endl; // Exibe largura e altura no terminal
     for(int i = 0; i < altura ; ++i){
         for(int j = 0; j < largura ; ++j){
             input_file.read(reinterpret_cast<char*>(&registro), 1);
             output_file << converte_registro(registro);
         }
         output_file << '\n';
+    }
+
+    if(!input_file.eof()){
+        cout << "Erro ao ler o arquivo " << argv[1] << endl;
+        return -1;
     }
 
     input_file.close();
