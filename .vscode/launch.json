@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/Mateus Duzzi/Desktop/C++/.vscode/.vscode/Trabalho2-tecnicas",
-      "program": "c:/Users/Mateus Duzzi/Desktop/C++/.vscode/.vscode/Trabalho2-tecnicas/build/Debug/outDebug",
+      "cwd": "c:/Users/luane/Desktop/C++/.vscode/.vscode/Trabalho2-tecnicas",
+      "program": "c:/Users/luane/Desktop/C++/.vscode/.vscode/Trabalho2-tecnicas/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

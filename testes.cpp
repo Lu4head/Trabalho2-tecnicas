@@ -1,4 +1,8 @@
-// tratamento que resulta igual o do professor (quase)
+// Integrantes do grupo:
+// Nome: Luan Emanuel R. Argentato     RA: 2184611
+// Nome: Gustavo T. Duzzi              RA:
+// Nome: Gabriel Golino                RA:
+
 #include <iostream>
 #include <locale.h>
 #include <fstream>
@@ -38,23 +42,29 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
+    input_file.seekg(0, ios::end); // Posiciona o ponteiro de leitura no final do arquivo
+    int fim_do_arquivo = input_file.tellg(); // Armazena a posição do ponteiro de leitura
+    input_file.seekg(0, ios::beg); // Posiciona o ponteiro de leitura no início do arquivo
+
     unsigned char registro;
     int altura , largura;
-    input_file >> largura >> altura;
-    output_file << largura << " " << altura << endl;
+    input_file >> largura >> altura; // Lê a largura e a altura da imagem
+    output_file << largura << " " << altura << endl; // Armazena a largura e altura da imagem no arquivo de saída
     cout << "colunas (largura): " << largura << "\nlinhas (altura): " << altura << endl; // Exibe largura e altura no terminal
-    for(int i = 0; i < altura ; ++i){
-        for(int j = 0; j < largura ; ++j){
-            input_file.read(reinterpret_cast<char*>(&registro), 1);
-            output_file << converte_registro(registro);
+    for(int i = 0; i < altura ; ++i){ // Percorre as linhas da imagem
+        for(int j = 0; j < largura ; ++j){ // Percorre as colunas da imagem
+            input_file.read(reinterpret_cast<char*>(&registro), 1); // Lê um byte do arquivo de entrada
+            output_file << converte_registro(registro); // Converte o byte lido e armazena no arquivo de saída
         }
-        output_file << '\n';
+        output_file << '\n'; // Finaliza a linha
     }
 
-    if(!input_file.eof()){
+    if(input_file.tellg() != fim_do_arquivo){ // Verifica se o arquivo foi lido completamente
         cout << "Erro ao ler o arquivo " << argv[1] << endl;
         return -1;
     }
+    
+    cout << "Arquivo " << argv[2] << " convertido com sucesso!" << endl;
 
     input_file.close();
     output_file.close();   
