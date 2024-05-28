@@ -58,7 +58,7 @@ int main(int argc, char* argv[]) {
         }
         output_file << '\n'; // Finaliza a linha
     }
-    cout << "teste"<< endl;
+    
     if(input_file.tellg() != fim_do_arquivo){ // Verifica se o arquivo foi lido completamente
         cout << "Erro ao ler o arquivo " << argv[1] << endl;
         return -1;
