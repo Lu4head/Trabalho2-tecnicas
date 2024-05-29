@@ -55,6 +55,8 @@ int main(int argc, char* argv[]) {
         for(int j = 0; j < largura ; ++j){ // Percorre as colunas da imagem
             input_file.read(reinterpret_cast<char*>(&registro), 1); // Lê um byte do arquivo de entrada
             output_file << converte_registro(registro); // Converte o byte lido e armazena no arquivo de saída
+            if (registro == '\n') cout << registro << " = " << converte_registro(registro) << endl;
+            
         }
         output_file << '\n'; // Finaliza a linha
     }
