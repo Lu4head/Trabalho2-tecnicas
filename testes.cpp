@@ -31,7 +31,7 @@ int main(int argc, char* argv[]) {
 
     if (argc < 3) { // Verifica se todos os parametros necessários foram passados
         cout << "Uso: " << argv[0] << " <arquivo_de_entrada> <arquivo_de_saida>" << endl;
-        return 1;
+        exit(1);
     }
     ifstream input_file(argv[1], ios::binary); // argv[1] é o nome do arquivo de entrada	
     if (!input_file) { // Verificação de erro na abertura do arquivo de entrada
@@ -61,7 +61,7 @@ int main(int argc, char* argv[]) {
     
     if(input_file.tellg() != fim_do_arquivo){ // Verifica se o arquivo foi lido completamente
         cout << "Erro ao ler o arquivo " << argv[1] << endl;
-        return -1;
+        exit(-1);
     }
     
     cout << "Arquivo " << argv[2] << " convertido com sucesso!" << endl;
