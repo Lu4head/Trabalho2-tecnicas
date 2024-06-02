@@ -1,6 +1,6 @@
 // Integrantes do grupo:
 // Nome: Luan Emanuel R. Argentato     RA: 2184611
-// Nome: Gustavo T. Duzzi              RA:
+// Nome: Gustavo T. Duzzi              RA: 2214047
 // Nome: Guilherme Santos Gollino      RA: 2226090 
 
 #include <iostream>
@@ -27,27 +27,27 @@ char converte_registro(unsigned char registro) {
 
 int main(int argc, char* argv[]) {
     setlocale(LC_ALL, "Portuguese");
+    int altura , largura;
 
     if (argc < 3) { // Verifica se todos os parametros necessários foram passados
         cout << "Uso: " << argv[0] << " <arquivo_de_entrada> <arquivo_de_saida>" << endl;
         return 1;
     }
-
     ifstream input_file(argv[1], ios::binary); // argv[1] é o nome do arquivo de entrada	
-    ofstream output_file(argv[2]); // argv[2] é o nome do arquivo de saída
-
-
-    if(input_file.fail()){
+    if (!input_file) { // Verificação de erro na abertura do arquivo de entrada
         cout << "Erro ao abrir o arquivo " << argv[1] << endl;
-        return 1;
+        exit (-1);
     }
-
+    ofstream output_file(argv[2]); // argv[2] é o nome do arquivo de saída
+    if (!output_file) { // Verificação de erro na criação do arquivo de saída 
+        cout << "Erro ao criar o arquivo " << argv[2] << endl;
+        exit(-1);
+    }
     input_file.seekg(0, ios::end); // Posiciona o ponteiro de leitura no final do arquivo
     int fim_do_arquivo = input_file.tellg(); // Armazena a posição do ponteiro de leitura
     input_file.seekg(0, ios::beg); // Posiciona o ponteiro de leitura no início do arquivo
 
     unsigned char registro;
-    int altura , largura;
     input_file >> largura >> altura; // Lê a largura e a altura da imagem
     output_file << largura << " " << altura << endl; // Armazena a largura e altura da imagem no arquivo de saída
     cout << "colunas (largura): " << largura << "\nlinhas (altura): " << altura << endl; // Exibe largura e altura no terminal
@@ -55,8 +55,6 @@ int main(int argc, char* argv[]) {
         for(int j = 0; j < largura ; ++j){ // Percorre as colunas da imagem
             input_file.read(reinterpret_cast<char*>(&registro), 1); // Lê um byte do arquivo de entrada
             output_file << converte_registro(registro); // Converte o byte lido e armazena no arquivo de saída
-            if (registro == '\n') cout << registro << " = " << converte_registro(registro) << endl;
-            
         }
         output_file << '\n'; // Finaliza a linha
     }
